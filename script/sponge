@@ -44,3 +44,8 @@ if (@ARGV) {
 This is a simple perl implementation for the Unix utility B<sponge>. See its
 documentation for more details. Any deviation of behavior compared to the
 original C<sponge> is assumed as bug and can be reported.
+
+
+=head1 TODO
+
+BUG: Our C<-a> implementation is not atomic.
