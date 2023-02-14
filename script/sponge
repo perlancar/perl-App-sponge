@@ -1,0 +1,46 @@
+#!perl
+
+use strict;
+use warnings;
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
+
+use Fcntl qw(:DEFAULT);
+use Getopt::Std;
+
+my %opts;
+getopts('a', \%opts) or die "sponge: Error in options processing, bailing\n";
+
+# soak input first
+my $input; { local $/; $input = <STDIN> }
+
+if (@ARGV) {
+    my $fh;
+    if ($opts{a}) {
+        sysopen $fh, $ARGV[0], O_CREAT|O_WRONLY;
+        seek $fh, 0, 2;
+    } else {
+        sysopen $fh, $ARGV[0], O_CREAT|O_TRUNC|O_WRONLY;
+    }
+    print $fh $input;
+} else {
+    # print to stdout
+    print $input;
+}
+
+# ABSTRACT: Soak up standard input and write to a file (perl implementation)
+# PODNAME:
+
+=head1 SYNOPSIS
+
+ % sed '...' file | grep '...' | sponge [-a] file
+
+
+=head1 DESCRIPTION
+
+This is a simple perl implementation for the Unix utility B<sponge>. See its
+documentation for more details. Any deviation of behavior compared to the
+original C<sponge> is assumed as bug and can be reported.
