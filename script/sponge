@@ -49,3 +49,10 @@ original C<sponge> is assumed as bug and can be reported.
 =head1 TODO
 
 BUG: Our C<-a> implementation is not atomic.
+
+
+=head1 SEE ALSO
+
+The original implementation of B<sponge>, L<http://joeyh.name/code/moreutils/>.
+
+L<inplace> from L<App::inplace>
